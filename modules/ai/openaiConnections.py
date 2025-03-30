@@ -86,6 +86,8 @@ def ai_create_openai_client() -> OpenAI:
             raise ValueError("No models are available!")
         if llm_model not in [model.id for model in models]:
             raise ValueError(f"Model `{llm_model}` is not found!")
+        if not api_key.startswith("sk-"):    # Check if the API key starts with "sk-proj-"
+            print_lg("An API key was found, but it doesn't start sk-proj-; please check you're using the right key.")
         
         print_lg("---- SUCCESSFULLY CREATED OPENAI CLIENT! ----")
         print_lg(f"Using API URL: {llm_api_url}")
